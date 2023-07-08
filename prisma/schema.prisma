@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// criar uma migration: yarn prisma migrate dev
+model User{
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  phone String
+  banner String?
+  isAdmin Boolean @default(false)
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+   notification Notification[]
+  appointment Appointment[]
+  @@map("users")
+}
+
+model Hour{
+  id String @id @default(uuid())
+  hour String
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+   appointment Appointment[]
+  @@map("hours")
+}
+
+model Service{
+  id String @id @default(uuid())
+  service String
+  price String
+  duration String
+  banner String?
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+  appointment Appointment[]
+  @@map("services")
+}
+
+model Collaborator{
+  id String @id @default(uuid())
+  name String
+  email String
+  phone String
+  address String
+  banner String?
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+  appointment Appointment[]
+  @@map("collaborator")
+}
+
+model Appointment{
+  id String @id @default(uuid())
+  collaborator Collaborator @relation(fields: [collaborator_id],references: [id])
+  user User @relation(fields: [user_id],references: [id])
+  date DateTime
+  service Service @relation(fields: [service_id],references: [id])
+  hour Hour @relation(fields: [hour_id],references: [id])
+  cancelAppointment Boolean @default(false)
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+  @@map("appointments")
+  collaborator_id String
+  user_id String
+  hour_id String
+  service_id String
+}
+
+model Salon{
+  id String @id @default(uuid())
+  name String
+  address String
+  phone String
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+  @@map("salon")
+}
+
+model Notification{
+  id String @id @default(uuid())
+  message String
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+   user User @relation(fields: [user_id],references: [id])
+  @@map("notifications")
+  user_id String
+}
