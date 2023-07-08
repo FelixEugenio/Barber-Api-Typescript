@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev":"ts-node-dev src/server.ts",
-    "vercel-build":"npx prisma migrate dev",
+    "dev": "ts-node-dev src/server.ts",
+    "test": "jest",
+    "vercel-build":"npx prisma migrate deploy",
     "postinstall": "prisma generate"
   },
   "devDependencies": {
