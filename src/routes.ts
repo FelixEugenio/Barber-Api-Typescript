@@ -26,6 +26,7 @@ import { DeleteServiceController } from './app/controllers/ServiceControllers/De
 import { DeleteUserController } from './app/controllers/UsersControllers/DeleteUserController';
 import { CreateDurationController } from './app/controllers/DurationControllers/CreateDurationController';
 import { UpdateDurationController } from './app/controllers/DurationControllers/UpdateDurationController';
+import { DeleteDurationController } from './app/controllers/DurationControllers/DeleteDurationController';
 import UploadConfig from '../src/config/Multer/multer';
 
 
@@ -58,5 +59,6 @@ router.delete('/collaborator/:id', isAuthenticated,new DeleteCollaboratorControl
 router.delete('/hour/:id', isAuthenticated,new DeleteHourController().handle )
 router.delete('/service/:id', isAuthenticated,new DeleteServiceController().handle )
 router.delete('/users/:id', isAuthenticated,new DeleteUserController().handle )
+router.delete('/duration/:id', isAuthenticated,new DeleteDurationController().handle )
 
 export { router }; 
