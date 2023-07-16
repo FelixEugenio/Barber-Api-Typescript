@@ -39,13 +39,25 @@ model Service{
   id String @id @default(uuid())
   service String
   price String
-  duration String
+  duration Duration @relation(fields: [duration_id],references: [id])
   banner String?
   createdAt DateTime? @default(now())
   updateAt DateTime? @default(now())
   appointment Appointment[]
   @@map("services")
+  duration_id String
 }
+
+model Duration{
+  id String @id @default(uuid())
+  duration String
+  service Service[]
+  createdAt DateTime? @default(now())
+  updateAt DateTime? @default(now())
+  @@map("durations")
+}
+
+
 
 model Collaborator{
   id String @id @default(uuid())

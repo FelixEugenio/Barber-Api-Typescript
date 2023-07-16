@@ -13,7 +13,6 @@ app.use(cors());
 app.use('/files',express.static(path.resolve(__dirname, '../src/tmp')));
 app.use(router);
 
-
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if(err instanceof Error){
     //Se for uma instancia do tipo error

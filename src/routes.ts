@@ -24,6 +24,7 @@ import { DeleteCollaboratorController } from './app/controllers/CollaboratorCont
 import { DeleteHourController } from './app/controllers/HoursControllers/DeleteHourController';
 import { DeleteServiceController } from './app/controllers/ServiceControllers/DeleteServiceController';
 import { DeleteUserController } from './app/controllers/UsersControllers/DeleteUserController';
+import { CreateDurationController } from './app/controllers/DurationControllers/CreateDurationController';
 import UploadConfig from '../src/config/Multer/multer';
 
 
@@ -36,6 +37,7 @@ router.post('/session', new AuthUserController().handle)
 router.post('/service', isAuthenticated,upload.single('file'),new CreateServiceController().handle)
 router.post('/collaborator', isAuthenticated,upload.single('file'),new CreateCollaboratorController().handle)
 router.post('/hours', isAuthenticated,new CreateHourController().handle)
+router.post('/duration', isAuthenticated,new CreateDurationController().handle)
 router.post('/appointments', isAuthenticated,new CreateAppointmentController().handle)
 router.get('/services', isAuthenticated,new ListServiceController().handle)
 router.get('/users', isAuthenticated,new GetAllUserController().handle)
