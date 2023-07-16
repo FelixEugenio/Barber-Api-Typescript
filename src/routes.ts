@@ -25,6 +25,7 @@ import { DeleteHourController } from './app/controllers/HoursControllers/DeleteH
 import { DeleteServiceController } from './app/controllers/ServiceControllers/DeleteServiceController';
 import { DeleteUserController } from './app/controllers/UsersControllers/DeleteUserController';
 import { CreateDurationController } from './app/controllers/DurationControllers/CreateDurationController';
+import { UpdateDurationController } from './app/controllers/DurationControllers/UpdateDurationController';
 import UploadConfig from '../src/config/Multer/multer';
 
 
@@ -50,6 +51,7 @@ router.get('/scheduledhours', isAuthenticated,new ListBusyHourAppointmentControl
 router.put('/users', isAuthenticated,upload.single('file'),new UpdateUserController().handle )
 router.put('/collaborator/:id', isAuthenticated,upload.single('file'),new UpdateCollaboratorController().handle)
 router.put('/hours/:id', isAuthenticated,new UpdateHourController().handle)
+router.put('/duration/:id', isAuthenticated,new UpdateDurationController().handle)
 router.put('/services/:id', isAuthenticated,upload.single('file'),new UpdateServiceController().handle)
 router.delete('/cancel/:id', isAuthenticated,new CancelAppointmentController().handle )
 router.delete('/collaborator/:id', isAuthenticated,new DeleteCollaboratorController().handle )
